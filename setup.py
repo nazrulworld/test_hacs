@@ -41,9 +41,14 @@ def get_package_data(package):
     return {package: filepaths}
 
 
+def get_version():
+    """"""
+    return __import__('hacs').__version__
+
+
 setup(
     name='django-hacs',
-    version='0.1a1',
+    version=get_version(),
     description="Hybrid Access Control System for Django",
     long_description=long_description,
     zip_safe=False,
