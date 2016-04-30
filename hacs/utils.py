@@ -285,7 +285,6 @@ def get_user_object(username_or_email_or_mobile, silent=True):
             raise
         return None
 
-
 __all__ = (
     "set_site_urlconf",
     "get_site_urlconf",

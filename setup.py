@@ -1,8 +1,39 @@
 # -*- coding: utf-8 -*-
 """Installer for the django-hacs package."""
 import os
+import sys
+import shutil
+import subprocess
 from setuptools import setup
 
+
+def get_version():
+    """"""
+    return __import__('hacs').__version__
+
+
+if sys.argv[-1] == 'release':
+
+    # Publish perquisite checking and release after validation
+    # Inspired from Django Restframework
+    if os.system("pip freeze | grep wheel"):
+        print("wheel not installed.\nUse `pip install wheel`.\nExiting.")
+        sys.exit()
+
+    if os.system("pip freeze | grep twine"):
+        print("twine not installed.\nUse `pip install twine`.\nExiting.")
+        sys.exit()
+
+    subprocess.call(["python", "setup.py", "sdist", "bdist_wheel"], stdout=sys.stdout, stderr=sys.stderr)
+    subprocess.call(["twine", "upload", "dist/*"])
+    print("You probably want to also tag the version now:")
+    print("  git tag -a {version} -m 'version {version} has been released'".format(version=get_version()))
+    print("  git push --tags")
+
+    shutil.rmtree('dist')
+    shutil.rmtree('build')
+    shutil.rmtree('django_hacs.egg-info')
+    sys.exit()
 
 long_description = (
     open('README.rst').read() +
@@ -41,9 +72,6 @@ def get_package_data(package):
     return {package: filepaths}
 
 
-def get_version():
-    """"""
-    return __import__('hacs').__version__
 
 
 setup(
