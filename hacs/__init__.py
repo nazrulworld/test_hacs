@@ -13,10 +13,13 @@
          888P"                     "Y88P"
 """
 
-from django.utils.version import get_version as django_get_version
+try:
+    from django.utils.version import get_version
+except ImportError:
+    from hacs.django_utils_version import get_version
 
 VERSION = (1, 0, 0, 'alpha', 0)
 default_app_config = 'hacs.apps.HACSConfig'
 
-__version__ = django_get_version(VERSION)
+__version__ = get_version(VERSION)
 
