@@ -36,7 +36,7 @@ def clean(curdir):
     """"""
     shutil.rmtree(os.path.join(curdir, 'dist'))
     shutil.rmtree(os.path.join(curdir, 'build'))
-    #shutil.rmtree(os.path.join(curdir, 'django_hacs.egg-info'))
+    shutil.rmtree(os.path.join(curdir, 'django_hacs.egg-info'))
 
 def main():
     """
