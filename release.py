@@ -82,12 +82,12 @@ def main():
     curdir = os.path.dirname(os.path.abspath(__file__))
 
     if subprocess.call(["python setup.py sdist bdist_wheel"], shell=True, cwd=curdir, **LOUD):
-        print "can't build! exiting.."        
+        print "can't build! exiting.."
         sys.exit()
     if subprocess.call(["twine upload dist/*"], shell=True, cwd=curdir, **LOUD):
         print "can't upload to PyPi server!"
-        #clean(curdir)
-        #sys.exit()
+        clean(curdir)
+        sys.exit()
 
     if params.enable_hook_git_tag:
         if params.tag_message:
@@ -98,8 +98,8 @@ def main():
         else:
             msg = "version: %s has been released" % get_version()
 
-        print " git tag -a %s -m %s" % (get_version(), msg)
-        if subprocess.call(["git tag -a %s -m %s" % (get_version(),  msg)], shell=True, cwd=curdir, **LOUD):
+        print " git tag -a %s -m '%s'" % (get_version(), msg)
+        if subprocess.call(["git tag -a %s -m \"%s\"" % (get_version(),  msg)], shell=True, cwd=curdir, **LOUD):
             print "Can't make a git tag, do this manually"
 
         print "git push --tags"
