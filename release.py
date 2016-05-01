@@ -82,13 +82,12 @@ def main():
     curdir = os.path.dirname(os.path.abspath(__file__))
 
     if subprocess.call(["python setup.py sdist bdist_wheel"], shell=True, cwd=curdir, **LOUD):
-        print "can't build! exiting.."
-        import pdb; pdb.set_trace()
+        print "can't build! exiting.."        
         sys.exit()
     if subprocess.call(["twine upload dist/*"], shell=True, cwd=curdir, **LOUD):
         print "can't upload to PyPi server!"
-        clean(curdir)
-        sys.exit()
+        #clean(curdir)
+        #sys.exit()
 
     if params.enable_hook_git_tag:
         if params.tag_message:
