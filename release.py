@@ -86,6 +86,7 @@ def main():
         sys.exit()
     if subprocess.call(["twine upload dist/*"], shell=True, cwd=curdir, **LOUD):
         print "can't upload to PyPi server!"
+        import pdb; pdb.set_trace()
         clean(curdir)
         sys.exit()
 

@@ -48,7 +48,7 @@ def get_package_data(package):
 
 
 setup(
-    name='django-hacs',
+    name='hacs',
     version=get_version(),
     description="Hybrid Access Control System for Django",
     long_description=long_description,
