@@ -3,7 +3,7 @@ graft docs
 include LICENSE
 include MANIFEST.in
 include *.rst
-include *.py
+include setup.py
 recursive-exclude hacs/locales * *.mo
 recursive-exclude hacs/generated * *.*
 recursive-exclude * __pycache__
