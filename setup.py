@@ -1,9 +1,6 @@
 # -*- coding: utf-8 -*-
 """Installer for the django-hacs package."""
 import os
-import sys
-import shutil
-import subprocess
 from setuptools import setup
 
 
@@ -51,7 +48,7 @@ def get_package_data(package):
 
 
 setup(
-    name='django-hacs',
+    name='hacs',
     version=get_version(),
     description="Hybrid Access Control System for Django",
     long_description=long_description,
